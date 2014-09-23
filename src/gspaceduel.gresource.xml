@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/gspaceduel">
+    <file preprocess="xml-stripblanks">data/menus.ui</file>
+    <file preprocess="xml-stripblanks">data/mainwindow.ui</file>
+    <file preprocess="xml-stripblanks">data/preferences.ui</file>
+    <file>data/style.css</file>
+    <file alias="sprites">data/default_theme.svg</file>
+    <file alias="sun">data/sprites/sun.png</file>
+    <file alias="background">data/sprites/background.png</file>
+    <file alias="ship1">data/sprites/ship1.png</file>
+    <file alias="ship2">data/sprites/ship2.png</file>
+    <file alias="bullet">data/sprites/bullet.png</file>
+    <file alias="explos00">data/sprites/explosion/explos00.png</file>
+    <file alias="explos01">data/sprites/explosion/explos01.png</file>
+    <file alias="explos02">data/sprites/explosion/explos02.png</file>
+    <file alias="explos03">data/sprites/explosion/explos03.png</file>
+    <file alias="explos04">data/sprites/explosion/explos04.png</file>
+    <file alias="explos05">data/sprites/explosion/explos05.png</file>
+    <file alias="explos06">data/sprites/explosion/explos06.png</file>
+    <file alias="explos07">data/sprites/explosion/explos07.png</file>
+    <file alias="explos08">data/sprites/explosion/explos08.png</file>
+    <file alias="explos09">data/sprites/explosion/explos09.png</file>
+    <file alias="explos10">data/sprites/explosion/explos10.png</file>
+    <file alias="explos11">data/sprites/explosion/explos11.png</file>
+    <file alias="explos12">data/sprites/explosion/explos12.png</file>
+    <file alias="explos13">data/sprites/explosion/explos13.png</file>
+    <file alias="explos14">data/sprites/explosion/explos14.png</file>
+    <file alias="explos15">data/sprites/explosion/explos15.png</file>
+    <file alias="explos16">data/sprites/explosion/explos16.png</file>
+    <file alias="explos17">data/sprites/explosion/explos17.png</file>
+    <file alias="explos18">data/sprites/explosion/explos18.png</file>
+    <file alias="explos19">data/sprites/explosion/explos19.png</file>
+    <file alias="explos20">data/sprites/explosion/explos20.png</file>
+    <file alias="explos21">data/sprites/explosion/explos21.png</file>
+    <file alias="explos22">data/sprites/explosion/explos22.png</file>
+    <file alias="explos23">data/sprites/explosion/explos23.png</file>
+    <file alias="explos24">data/sprites/explosion/explos24.png</file>
+    <file alias="explos25">data/sprites/explosion/explos25.png</file>
+    <file alias="explos26">data/sprites/explosion/explos26.png</file>
+    <file alias="explos27">data/sprites/explosion/explos27.png</file>
+    <file alias="explos28">data/sprites/explosion/explos28.png</file>
+    <file alias="explos29">data/sprites/explosion/explos29.png</file>
+    <file alias="explos30">data/sprites/explosion/explos30.png</file>
+  </gresource>
+</gresources>

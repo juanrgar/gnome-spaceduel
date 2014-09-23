@@ -1,0 +1,19 @@
+#mainheaderbar {
+/*  color: white; */
+/*  background-image: url("/org/gnome/gspaceduel/background"); */
+/*  border-image: linear-gradient(to bottom, black); */
+}
+
+#pausebutton:hover {
+  color: white;
+  background-image: linear-gradient(to bottom, red);
+}
+
+#pausebutton:checked {
+  color: white;
+  background-image: linear-gradient(to bottom, red);
+}
+
+#score {
+/*  background-image: url("/org/gnome/gspaceduel/background"); */
+}
