@@ -117,18 +117,6 @@ public class MobileSprite : SimpleSprite
     _check_bounds ();
   }
 
-  public void fire_bullet (MobileSprite bullet)
-  {
-    float rotation = (float)_degrees_to_rads (rotation_angle_z);
-    float nx = GLib.Math.cosf (rotation);
-    float ny = GLib.Math.sinf (rotation);
-
-    bullet.center_x = center_x + nx*28.0f;
-    bullet.center_y = center_y + ny*28.0f;
-    bullet.velocity_x = velocity_x + nx*3.0f;
-    bullet.velocity_y = velocity_y + ny*3.0f;
-  }
-
   private void _check_bounds ()
   {
     float min_x = 0.0f;
@@ -152,12 +140,6 @@ public class MobileSprite : SimpleSprite
     {
       center_y = min_y;
     }
-  }
-
-  protected double _degrees_to_rads (double deg)
-  {
-    const double conv_factor = 2.0*GLib.Math.PI/360.0;
-    return deg*conv_factor;
   }
 }
 
@@ -184,6 +166,10 @@ public class ShipSprite : MobileSprite
 
   public double health {
     get; set; default = 10.0;
+  }
+
+  public uint available_bullets {
+    get; set; default = 0;
   }
 
   public void accelerate ()
@@ -222,6 +208,33 @@ public class ShipSprite : MobileSprite
   {
     health -= bullet_damage;
     return (health <= 0.0f);
+  }
+
+  public bool has_bullets ()
+  {
+    return (_available_bullets > 0);
+  }
+
+  public void fire_bullet (MobileSprite bullet)
+  {
+    assert (_available_bullets > 0);
+
+    float rotation = (float)_degrees_to_rads (rotation_angle_z);
+    float nx = GLib.Math.cosf (rotation);
+    float ny = GLib.Math.sinf (rotation);
+
+    bullet.center_x = center_x + nx*28.0f;
+    bullet.center_y = center_y + ny*28.0f;
+    bullet.velocity_x = velocity_x + nx*3.0f;
+    bullet.velocity_y = velocity_y + ny*3.0f;
+
+    _available_bullets--;
+  }
+
+  protected double _degrees_to_rads (double deg)
+  {
+    const double conv_factor = 2.0*GLib.Math.PI/360.0;
+    return deg*conv_factor;
   }
 }
 

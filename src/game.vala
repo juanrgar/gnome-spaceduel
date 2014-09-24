@@ -357,13 +357,16 @@ public class Game : GLib.Object
       }
       if (_player_key_pressed[i].fire_bullet)
       {
-        var bullet = new BulletSprite ("bullet");
-        bullet.load ();
-        _view.add_child (bullet);
-        _bullets.add (bullet);
-        _player_key_pressed[i].fire_bullet = false;
+        if (_ships[i].has_bullets ())
+        {
+          var bullet = new BulletSprite ("bullet");
+          bullet.load ();
+          _view.add_child (bullet);
+          _bullets.add (bullet);
+          _player_key_pressed[i].fire_bullet = false;
 
-        _ships[i].fire_bullet (bullet);
+          _ships[i].fire_bullet (bullet);
+        }
       }
 
       _ships[i].forward (game_speed);
@@ -493,6 +496,8 @@ public class Game : GLib.Object
     float view_center_x = _view.width/2.0f;
     float view_fourth_y = _view.height/4.0f;
 
+    uint available_bullets = _settings.get_uint ("initial-bullets");
+
     _ships[0].center_x = view_center_x;
     _ships[0].center_y = view_fourth_y;
     _ships[0].rotation_angle_z = 0.0f;
@@ -500,6 +505,7 @@ public class Game : GLib.Object
     _ships[0].velocity_y = start_vel_y;
     _ships[0].exploded = false;
     _ships[0].health = 10.0;
+    _ships[0].available_bullets = available_bullets;
     _ships[0].show ();
 
     _ships[1].center_x = view_center_x;
@@ -509,6 +515,7 @@ public class Game : GLib.Object
     _ships[1].velocity_y = -start_vel_y;
     _ships[1].exploded = false;
     _ships[1].health = 10.0;
+    _ships[1].available_bullets = available_bullets;
     _ships[1].show ();
 
     foreach (var bullet in _bullets)
@@ -528,10 +535,13 @@ public class Game : GLib.Object
   {
     float start_vel_x = (float)_settings.get_double ("start-vel-x");
     float start_vel_y = (float)_settings.get_double ("start-vel-y");
-
     _ships[0].velocity_x = start_vel_x;
     _ships[0].velocity_y = start_vel_y;
     _ships[1].velocity_x = -start_vel_x;
     _ships[1].velocity_y = -start_vel_y;
+
+    uint available_bullets = _settings.get_uint ("initial-bullets");
+    _ships[0].available_bullets = available_bullets;
+    _ships[1].available_bullets = available_bullets;
   }
 }

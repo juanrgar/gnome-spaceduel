@@ -35,5 +35,10 @@
       <summary>Start velocity Y</summary>
       <description>Start velocity Y axis component.</description>
     </key>
+    <key name="initial-bullets" type="u">
+      <default>10</default>
+      <summary>Initial bullets per ship</summary>
+      <description>Initial amount of bullets available per ship.</description>
+    </key>
   </schema>
 </schemalist>
