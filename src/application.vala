@@ -107,6 +107,8 @@ public class Application : Gtk.Application
     _game.notify["round"].connect ((s, p) => {
       _header_bar.title = "Round " + _game.round.to_string ();
     });
+
+    _game.bind_property ("started", lookup_action ("preferences"), "enabled", GLib.BindingFlags.INVERT_BOOLEAN);
   }
 
   private void _create_window (Gtk.Builder builder)
