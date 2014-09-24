@@ -147,6 +147,7 @@ public class ShipSprite : MobileSprite
 {
   private bool _exploding;
   private ExplosionSprite _explosion;
+  public uint _fired_bullets;
 
   public ShipSprite (string element_id)
   {
@@ -165,11 +166,24 @@ public class ShipSprite : MobileSprite
   }
 
   public double health {
-    get; set; default = 10.0;
+    get; set; default = 1.0;
   }
 
   public uint available_bullets {
-    get; set; default = 0;
+    get; set; default = 10;
+  }
+
+  public uint fired_bullets {
+    get { return _fired_bullets; }
+    set
+    {
+      _fired_bullets = value;
+      available_bullets_level = (double)(_available_bullets-_fired_bullets)/(double)_available_bullets;
+    }
+  }
+
+  public double available_bullets_level {
+    get; set; default = 1.0;
   }
 
   public void accelerate ()
@@ -212,12 +226,12 @@ public class ShipSprite : MobileSprite
 
   public bool has_bullets ()
   {
-    return (_available_bullets > 0);
+    return (_fired_bullets < _available_bullets);
   }
 
   public void fire_bullet (MobileSprite bullet)
   {
-    assert (_available_bullets > 0);
+    assert (has_bullets ());
 
     float rotation = (float)_degrees_to_rads (rotation_angle_z);
     float nx = GLib.Math.cosf (rotation);
@@ -228,7 +242,15 @@ public class ShipSprite : MobileSprite
     bullet.velocity_x = velocity_x + nx*3.0f;
     bullet.velocity_y = velocity_y + ny*3.0f;
 
-    _available_bullets--;
+    fired_bullets++;
+  }
+
+  public void reset ()
+  {
+    _exploded = false;
+
+    health = 1.0;
+    fired_bullets = 0;
   }
 
   protected double _degrees_to_rads (double deg)

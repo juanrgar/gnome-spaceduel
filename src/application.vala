@@ -179,6 +179,11 @@ public class Application : Gtk.Application
     var damage2 = builder.get_object ("damage2") as Gtk.LevelBar;
     _game.ships[0].bind_property ("health", damage1, "value", GLib.BindingFlags.DEFAULT);
     _game.ships[1].bind_property ("health", damage2, "value", GLib.BindingFlags.DEFAULT);
+
+    var bullets1 = builder.get_object ("bullets1") as Gtk.LevelBar;
+    var bullets2 = builder.get_object ("bullets2") as Gtk.LevelBar;
+    _game.ships[0].bind_property ("available-bullets-level", bullets1, "value", GLib.BindingFlags.DEFAULT);
+    _game.ships[1].bind_property ("available-bullets-level", bullets2, "value", GLib.BindingFlags.DEFAULT);
   }
 
   private void _create_about_dialog ()
@@ -233,6 +238,7 @@ public class Application : Gtk.Application
     _settings.bind ("sun-gravity", builder.get_object ("sungravityspin"), "value", GLib.SettingsBindFlags.DEFAULT);
     _settings.bind ("start-vel-x", builder.get_object ("startvelx"), "value", GLib.SettingsBindFlags.DEFAULT);
     _settings.bind ("start-vel-y", builder.get_object ("startvely"), "value", GLib.SettingsBindFlags.DEFAULT);
+    _settings.bind ("bullet-damage", builder.get_object ("damagespin"), "value", GLib.SettingsBindFlags.DEFAULT);
     _settings.bind ("initial-bullets", builder.get_object ("bulletsspin"), "value", GLib.SettingsBindFlags.DEFAULT);
   }
 

@@ -400,6 +400,7 @@ public class Game : GLib.Object
     }
 
     // ships and bullets
+    float bullet_damage = (float)_settings.get_double ("bullet-damage");
     var bullets_to_remove = new Gee.ArrayList<BulletSprite> ();
     foreach (var bullet in _bullets)
     {
@@ -409,7 +410,7 @@ public class Game : GLib.Object
         {
           bullets_to_remove.add (bullet);
 
-          if (_ships[i].hit (1.0))
+          if (_ships[i].hit (bullet_damage))
           {
             _ships[i].explode (_ship_explosion_frames);
             _finish_round ();
@@ -503,9 +504,8 @@ public class Game : GLib.Object
     _ships[0].rotation_angle_z = 0.0f;
     _ships[0].velocity_x = start_vel_x;
     _ships[0].velocity_y = start_vel_y;
-    _ships[0].exploded = false;
-    _ships[0].health = 10.0;
     _ships[0].available_bullets = available_bullets;
+    _ships[0].reset ();
     _ships[0].show ();
 
     _ships[1].center_x = view_center_x;
@@ -513,9 +513,8 @@ public class Game : GLib.Object
     _ships[1].rotation_angle_z = 180.0f;
     _ships[1].velocity_x = -start_vel_x;
     _ships[1].velocity_y = -start_vel_y;
-    _ships[1].exploded = false;
-    _ships[1].health = 10.0;
     _ships[1].available_bullets = available_bullets;
+    _ships[1].reset ();
     _ships[1].show ();
 
     foreach (var bullet in _bullets)
