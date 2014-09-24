@@ -222,6 +222,7 @@ public class Application : Gtk.Application
       _preferences_dialog.hide_on_delete ();
     });
     _preferences_dialog.delete_event.connect ((response_id) => {
+      _game.reload_settings ();
       return _preferences_dialog.hide_on_delete ();
     });
 

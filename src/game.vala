@@ -518,4 +518,20 @@ public class Game : GLib.Object
 
     _bullets.clear ();
   }
+
+  public void reload_settings ()
+  {
+    _reload_ships_settings ();
+  }
+
+  private void _reload_ships_settings ()
+  {
+    float start_vel_x = (float)_settings.get_double ("start-vel-x");
+    float start_vel_y = (float)_settings.get_double ("start-vel-y");
+
+    _ships[0].velocity_x = start_vel_x;
+    _ships[0].velocity_y = start_vel_y;
+    _ships[1].velocity_x = -start_vel_x;
+    _ships[1].velocity_y = -start_vel_y;
+  }
 }
