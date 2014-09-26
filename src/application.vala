@@ -31,7 +31,8 @@ public class Application : Gtk.Application
     { "new-game",      new_game_cb    },
     { "about",         about_cb       },
     { "preferences",   preferences_cb },
-    { "quit",          quit_cb        }
+    { "quit",          quit_cb        },
+    { "help",          help_cb        }
   };
 
   public Application ()
@@ -281,6 +282,18 @@ public class Application : Gtk.Application
   private void quit_cb ()
   {
     _window.destroy ();
+  }
+
+  private void help_cb ()
+  {
+    try
+    {
+      Gtk.show_uri (_window.get_screen (), "help:gspaceduel", Gtk.get_current_event_time ());
+    }
+    catch (GLib.Error e)
+    {
+      warning ("Failed to show help: %s", e.message);
+    }
   }
 
   private bool key_press_event_cb (Gtk.Widget widget, Gdk.EventKey event)
