@@ -232,6 +232,20 @@ public class Application : Gtk.Application
 
     _preferences_dialog = builder.get_object ("preferencesdialog") as Gtk.Dialog;
     _preferences_dialog.set_transient_for (_window);
+
+    var defaults_button = new Gtk.Button.with_label (_("Restore Defaults"));
+    defaults_button.clicked.connect ((b) => {
+      var keys = _settings.list_keys ();
+      for (uint i = 0; i != keys.length; ++i)
+      {
+        _settings.reset (keys[i]);
+      }
+    });
+    var header_bar = _preferences_dialog.get_header_bar () as Gtk.HeaderBar;
+    header_bar.pack_start (defaults_button);
+    defaults_button.get_style_context ().add_class ("destructive-action");
+    defaults_button.show ();
+
     _preferences_dialog.response.connect ((response_id) => {
       _preferences_dialog.hide_on_delete ();
     });
