@@ -2,61 +2,47 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkAdjustment" id="adjustment1">
+  <object class="GtkAdjustment" id="bullets">
     <property name="lower">1</property>
-    <property name="upper">5</property>
-    <property name="value">1</property>
+    <property name="upper">100</property>
+    <property name="value">10</property>
     <property name="step_increment">1</property>
-    <property name="page_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment2">
-    <property name="lower">0.01</property>
-    <property name="upper">10000</property>
-    <property name="value">2200</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">100</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment3">
-    <property name="lower">-10</property>
-    <property name="upper">10</property>
-    <property name="value">2</property>
-    <property name="step_increment">0.02</property>
-    <property name="page_increment">0.10000000000000001</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment4">
-    <property name="lower">-10</property>
-    <property name="upper">10</property>
-    <property name="value">0.69999999999999996</property>
-    <property name="step_increment">0.02</property>
-    <property name="page_increment">0.10000000000000001</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment5">
-    <property name="lower">-10</property>
-    <property name="upper">10</property>
-    <property name="value">-2</property>
-    <property name="step_increment">0.02</property>
-    <property name="page_increment">0.10000000000000001</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment6">
-    <property name="lower">-10</property>
-    <property name="upper">10</property>
-    <property name="value">-0.69999999999999996</property>
-    <property name="step_increment">0.02</property>
-    <property name="page_increment">0.10000000000000001</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment7">
+  <object class="GtkAdjustment" id="damage">
     <property name="lower">0.01</property>
     <property name="upper">1</property>
     <property name="value">0.10000000000000001</property>
     <property name="step_increment">0.01</property>
     <property name="page_increment">0.10000000000000001</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment8">
+  <object class="GtkAdjustment" id="gamespeed">
     <property name="lower">1</property>
-    <property name="upper">100</property>
-    <property name="value">10</property>
+    <property name="upper">5</property>
+    <property name="value">1</property>
     <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="page_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="startvelx">
+    <property name="lower">-10</property>
+    <property name="upper">10</property>
+    <property name="value">2</property>
+    <property name="step_increment">0.02</property>
+    <property name="page_increment">0.10000000000000001</property>
+  </object>
+  <object class="GtkAdjustment" id="startvely">
+    <property name="lower">-10</property>
+    <property name="upper">10</property>
+    <property name="value">0.69999999999999996</property>
+    <property name="step_increment">0.02</property>
+    <property name="page_increment">0.10000000000000001</property>
+  </object>
+  <object class="GtkAdjustment" id="sungravity">
+    <property name="lower">0.01</property>
+    <property name="upper">10000</property>
+    <property name="value">2200</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">100</property>
   </object>
   <object class="GtkDialog" id="preferencesdialog">
     <property name="can_focus">False</property>
@@ -143,7 +129,7 @@
                                     <property name="can_focus">True</property>
                                     <property name="progress_pulse_step">0.070000000000000007</property>
                                     <property name="input_purpose">digits</property>
-                                    <property name="adjustment">adjustment2</property>
+                                    <property name="adjustment">sungravity</property>
                                     <property name="climb_rate">0.01</property>
                                     <property name="digits">2</property>
                                     <property name="numeric">True</property>
@@ -172,7 +158,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="input_purpose">number</property>
-                                    <property name="adjustment">adjustment1</property>
+                                    <property name="adjustment">gamespeed</property>
                                     <property name="climb_rate">1</property>
                                     <property name="digits">1</property>
                                     <property name="value">1</property>
@@ -207,10 +193,10 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="startvelx">
+                                  <object class="GtkSpinButton" id="startvelxspin">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment3</property>
+                                    <property name="adjustment">startvelx</property>
                                     <property name="digits">2</property>
                                     <property name="value">2</property>
                                   </object>
@@ -220,10 +206,10 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="startvely">
+                                  <object class="GtkSpinButton" id="startvelyspin">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment4</property>
+                                    <property name="adjustment">startvely</property>
                                     <property name="digits">2</property>
                                   </object>
                                   <packing>
@@ -298,7 +284,7 @@
                                   <object class="GtkSpinButton" id="bulletsspin">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment8</property>
+                                    <property name="adjustment">bullets</property>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -309,8 +295,10 @@
                                   <object class="GtkScale" id="damagescale">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment7</property>
-                                    <property name="round_digits">1</property>
+                                    <property name="adjustment">damage</property>
+                                    <property name="restrict_to_fill_level">False</property>
+                                    <property name="fill_level">0.10000000000000001</property>
+                                    <property name="round_digits">2</property>
                                     <property name="draw_value">False</property>
                                   </object>
                                   <packing>

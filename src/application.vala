@@ -255,12 +255,12 @@ public class Application : Gtk.Application
     });
 
     // Bindings
-    _settings.bind ("game-speed", builder.get_object ("gamespeedspin"), "value", GLib.SettingsBindFlags.DEFAULT);
-    _settings.bind ("sun-gravity", builder.get_object ("sungravityspin"), "value", GLib.SettingsBindFlags.DEFAULT);
+    _settings.bind ("game-speed", builder.get_object ("gamespeed"), "value", GLib.SettingsBindFlags.DEFAULT);
+    _settings.bind ("sun-gravity", builder.get_object ("sungravity"), "value", GLib.SettingsBindFlags.DEFAULT);
     _settings.bind ("start-vel-x", builder.get_object ("startvelx"), "value", GLib.SettingsBindFlags.DEFAULT);
     _settings.bind ("start-vel-y", builder.get_object ("startvely"), "value", GLib.SettingsBindFlags.DEFAULT);
-    _settings.bind ("bullet-damage", builder.get_object ("damagescale"), "fill-level", GLib.SettingsBindFlags.DEFAULT);
-    _settings.bind ("initial-bullets", builder.get_object ("bulletsspin"), "value", GLib.SettingsBindFlags.DEFAULT);
+    _settings.bind ("bullet-damage", builder.get_object ("damage"), "value", GLib.SettingsBindFlags.DEFAULT);
+    _settings.bind ("initial-bullets", builder.get_object ("bullets"), "value", GLib.SettingsBindFlags.DEFAULT);
   }
 
   private void new_game_cb ()
