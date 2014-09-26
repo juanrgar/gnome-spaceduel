@@ -1,4 +1,4 @@
-/* gspaceduel Copyright (C) 2014 Juan R. García Blanco
+/* gnome-spaceduel Copyright (C) 2014 Juan R. García Blanco
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2
@@ -29,7 +29,7 @@ public class SimpleSprite : Clutter.Actor
   {
     try
     {
-      var pixbuf = new Gdk.Pixbuf.from_resource ("/org/gnome/gspaceduel/" + _element_id);
+      var pixbuf = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/" + _element_id);
       var image = new Clutter.Image ();
       image.set_data (pixbuf.get_pixels (),
         Cogl.PixelFormat.RGBA_8888,

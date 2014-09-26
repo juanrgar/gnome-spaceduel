@@ -1,4 +1,4 @@
-/* gspaceduel Copyright (C) 2014 Juan R. García Blanco
+/* gnome-spaceduel Copyright (C) 2014 Juan R. García Blanco
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2
@@ -117,7 +117,7 @@ public class Game : GLib.Object
   {
     try
     {
-      var background_pixbuf = new Gdk.Pixbuf.from_resource ("/org/gnome/gspaceduel/background");
+      var background_pixbuf = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/background");
       var background_image = new Clutter.Image ();
       background_image.set_data (background_pixbuf.get_pixels (),
         Cogl.PixelFormat.RGB_888,
@@ -159,7 +159,7 @@ public class Game : GLib.Object
     {
       for (int i = 0; i != _ship_explosion_frames.length; ++i)
       {
-        var frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gspaceduel/explos" + i.to_string("%02i"));
+        var frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/explos" + i.to_string("%02i"));
         _ship_explosion_frames[i] = frame;
       }
     }

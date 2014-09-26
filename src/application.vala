@@ -1,4 +1,4 @@
-/* gspaceduel Copyright (C) 2014 Juan R. García Blanco
+/* gnome-spaceduel Copyright (C) 2014 Juan R. García Blanco
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2
@@ -37,7 +37,7 @@ public class Application : Gtk.Application
 
   public Application ()
   {
-    Object (application_id: "org.gnome.gspaceduel", flags: ApplicationFlags.FLAGS_NONE);
+    Object (application_id: "org.gnome.gnome-spaceduel", flags: ApplicationFlags.FLAGS_NONE);
   }
 
   protected override void startup ()
@@ -47,7 +47,7 @@ public class Application : Gtk.Application
     add_action_entries (action_entries, this);
     add_accelerator ("F1", "app.help", null);
 
-    _settings = new Settings ("org.gnome.gspaceduel");
+    _settings = new Settings ("org.gnome.spaceduel");
 
     _init_style ();
     _init_app_menu ();
@@ -79,7 +79,7 @@ public class Application : Gtk.Application
     var provider = new Gtk.CssProvider ();
     try
     {
-      provider.load_from_file (GLib.File.new_for_uri ("resource://org/gnome/gspaceduel/data/style.css"));
+      provider.load_from_file (GLib.File.new_for_uri ("resource://org/gnome/gnome-spaceduel/data/style.css"));
       Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
     catch (GLib.Error e)
@@ -93,7 +93,7 @@ public class Application : Gtk.Application
     var builder = new Gtk.Builder ();
     try 
     {
-      builder.add_from_resource ("/org/gnome/gspaceduel/data/menus.ui");
+      builder.add_from_resource ("/org/gnome/gnome-spaceduel/data/menus.ui");
       var menu = builder.get_object ("app-menu") as GLib.MenuModel;
       set_app_menu (menu);
     }
@@ -122,7 +122,7 @@ public class Application : Gtk.Application
   {
     try 
     {
-      builder.add_from_resource ("/org/gnome/gspaceduel/data/mainwindow.ui");
+      builder.add_from_resource ("/org/gnome/gnome-spaceduel/data/mainwindow.ui");
     }
     catch (GLib.Error e)
     {
@@ -201,9 +201,9 @@ public class Application : Gtk.Application
     _about_dialog.destroy_with_parent = true;
     _about_dialog.modal = true;
 
-    _about_dialog.program_name = "gspaceduel";
-    _about_dialog.logo_icon_name = "gspaceduel";
-    _about_dialog.comments = _("A clone of kspaceduel for GNOME");
+    _about_dialog.program_name = "Spaceduel";
+    _about_dialog.logo_icon_name = "gnome-spaceduel";
+    _about_dialog.comments = _("A clone of KSpaceduel for GNOME");
 
     _about_dialog.authors = {"Juan R. García Blanco"};
     _about_dialog.copyright = "Copyright © 2014 Juan R. García Blanco";
@@ -224,7 +224,7 @@ public class Application : Gtk.Application
   {
     try 
     {
-      builder.add_from_resource ("/org/gnome/gspaceduel/data/preferences.ui");
+      builder.add_from_resource ("/org/gnome/gnome-spaceduel/data/preferences.ui");
     }
     catch (GLib.Error e)
     {
@@ -288,7 +288,7 @@ public class Application : Gtk.Application
   {
     try
     {
-      Gtk.show_uri (_window.get_screen (), "help:gspaceduel", Gtk.get_current_event_time ());
+      Gtk.show_uri (_window.get_screen (), "help:gnome-spaceduel", Gtk.get_current_event_time ());
     }
     catch (GLib.Error e)
     {
@@ -328,7 +328,7 @@ public class Application : Gtk.Application
       return Posix.EXIT_FAILURE;
     }
 
-    Environment.set_application_name (_("gspaceduel"));
+    Environment.set_application_name (_("Spaceduel"));
 
     try
     {

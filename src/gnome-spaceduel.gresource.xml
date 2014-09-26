@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gnome/gspaceduel">
+  <gresource prefix="/org/gnome/gnome-spaceduel">
     <file preprocess="xml-stripblanks">data/menus.ui</file>
     <file preprocess="xml-stripblanks">data/mainwindow.ui</file>
     <file preprocess="xml-stripblanks">data/preferences.ui</file>

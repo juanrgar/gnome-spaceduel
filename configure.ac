@@ -1,6 +1,6 @@
 AC_PREREQ([2.63])
-AC_INIT([gspaceduel], [0.1.0], [http://www.gnome.org],
-        [gspaceduel])
+AC_INIT([gnome-spaceduel], [0.1.0], [http://www.gnome.org],
+        [gnome-spaceduel])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE
@@ -21,7 +21,7 @@ CLUTTER_GTK_REQUIRED=0.91.6
 GEE_REQUIRED=0.14.0
 LIBRSVG_REQUIRED=2.40.0
 
-PKG_CHECK_MODULES(GSPACEDUEL, [
+PKG_CHECK_MODULES(GNOME_SPACEDUEL, [
   gtk+-3.0 >= $GTK_REQUIRED
   clutter-1.0 >= $CLUTTER_REQUIRED
   clutter-gtk-1.0 >= $CLUTTER_REQUIRED
@@ -38,7 +38,7 @@ dnl Internationalization
 dnl ###########################################################################
 
 IT_PROG_INTLTOOL([0.50])
-AC_SUBST(GETTEXT_PACKAGE, gspaceduel)
+AC_SUBST(GETTEXT_PACKAGE, gnome-spaceduel)
 
 dnl ###########################################################################
 dnl Documentation

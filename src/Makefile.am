@@ -1,22 +1,22 @@
-bin_PROGRAMS = gspaceduel
+bin_PROGRAMS = gnome-spaceduel
 
-gspaceduel_SOURCES = \
+gnome_spaceduel_SOURCES = \
 	config.vapi \
 	application.vala \
 	game.vala \
 	sprites.vala \
-	gspaceduel-data.h \
-	gspaceduel-data.c
+	gnome-spaceduel-data.h \
+	gnome-spaceduel-data.c
 
-gspaceduel_CFLAGS = \
+gnome_spaceduel_CFLAGS = \
 	-DVERSION=\"$(VERSION)\" \
 	-DGETTEXT_PACKAGE=\"$(GETTEXT_PACKAGE)\" \
-	-DDATA_DIRECTORY=\"$(datadir)/gspaceduel\" \
+	-DDATA_DIRECTORY=\"$(datadir)/gnome-spaceduel\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
-	$(GSPACEDUEL_CFLAGS) \
+	$(GNOME_SPACEDUEL_CFLAGS) \
 	-w
 
-gspaceduel_VALAFLAGS = \
+gnome_spaceduel_VALAFLAGS = \
 	--pkg posix \
 	--pkg gtk+-3.0 \
 	--pkg pango \
@@ -26,33 +26,33 @@ gspaceduel_VALAFLAGS = \
 	--pkg cogl-1.0 \
 	--pkg gee-0.8
 
-gspaceduel_LDADD = \
-	$(GSPACEDUEL_LIBS) \
+gnome_spaceduel_LDADD = \
+	$(GNOME_SPACEDUEL_LIBS) \
 	-lm
 
 data_files = $(shell $(GLIB_COMPILE_RESOURCES)				\
 		--sourcedir=$(top_srcdir)					\
-		--generate-dependencies gspaceduel.gresource.xml)
+		--generate-dependencies gnome-spaceduel.gresource.xml)
 
-gspaceduel-data.h: gspaceduel.gresource.xml $(data_files)
+gnome-spaceduel-data.h: gnome-spaceduel.gresource.xml $(data_files)
 	$(AM_V_GEN)							\
 		$(GLIB_COMPILE_RESOURCES)				\
 		--target=$@						\
 		--sourcedir=$(top_srcdir)					\
 		--generate						\
-		--c-name gspaceduel_data $<
-gspaceduel-data.c: gspaceduel.gresource.xml $(data_files)
+		--c-name gnome_spaceduel_data $<
+gnome-spaceduel-data.c: gnome-spaceduel.gresource.xml $(data_files)
 	$(AM_V_GEN)							\
 		$(GLIB_COMPILE_RESOURCES)				\
 		--target=$@						\
 		--sourcedir=$(top_srcdir)					\
 		--generate						\
-		--c-name gspaceduel_data $<
+		--c-name gnome_spaceduel_data $<
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
 	*_vala.stamp \
-	gspaceduel-data.h \
-	gspaceduel-data.c
+	gnome-spaceduel-data.h \
+	gnome-spaceduel-data.c
 
 -include $(top_srcdir)/git.mk

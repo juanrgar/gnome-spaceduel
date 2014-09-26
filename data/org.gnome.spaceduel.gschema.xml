@@ -1,5 +1,5 @@
-<schemalist gettext-domain="gspaceduel">
-  <schema id="org.gnome.gspaceduel" path="/org/gnome/gspaceduel/">
+<schemalist gettext-domain="gnome-spaceduel">
+  <schema id="org.gnome.spaceduel" path="/org/gnome/spaceduel/">
     <key name="window-size" type="ai">
       <default>[768, 600]</default>
       <summary>Window size</summary>
