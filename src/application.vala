@@ -20,6 +20,7 @@ public class Application : Gtk.Application
 
   private Gtk.Window _window;
   private Gtk.HeaderBar _header_bar;
+  private Gtk.ToggleButton _pause_button;
   private Gtk.AboutDialog _about_dialog;
   private Gtk.Dialog _preferences_dialog;
 
@@ -142,15 +143,16 @@ public class Application : Gtk.Application
     _header_bar.title = "New game";
     _window.set_titlebar (_header_bar);
 
-    var pause_button = new Gtk.ToggleButton.with_label (_("Pause"));
-    pause_button.name = "pausebutton";
-    pause_button.sensitive = false;
-    _header_bar.pack_start (pause_button);
+    _pause_button = new Gtk.ToggleButton.with_label (_("Pause"));
+    _pause_button.name = "pausebutton";
+    _pause_button.sensitive = false;
+    _header_bar.pack_start (_pause_button);
 
-    _game.bind_property ("started", pause_button, "sensitive", GLib.BindingFlags.DEFAULT);
-    _game.bind_property ("paused", pause_button, "active", GLib.BindingFlags.DEFAULT);
-    pause_button.toggled.connect (() => {
-      bool state = pause_button.active;
+    _game.bind_property ("started", _pause_button, "sensitive", GLib.BindingFlags.DEFAULT);
+    _game.bind_property ("paused", _pause_button, "active", GLib.BindingFlags.DEFAULT);
+    _pause_button.toggled.connect (() => {
+      bool state = _pause_button.active;
+      _pause_button.label = state ? _("Unpause") : _("Pause");
       _game.pause (state);
     });
   }
