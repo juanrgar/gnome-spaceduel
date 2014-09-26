@@ -110,6 +110,9 @@ public class Application : Gtk.Application
       title += " " + _game.round.to_string ();
       _header_bar.title = title;
     });
+    _game.notify["status-message"].connect ((s, p) => {
+      _header_bar.subtitle = _game.status_message;
+    });
 
     _game.bind_property ("started", lookup_action ("preferences"), "enabled", GLib.BindingFlags.INVERT_BOOLEAN);
   }

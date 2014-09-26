@@ -33,9 +33,6 @@ public class Game : GLib.Object
 
   // Game view
   private Clutter.Actor _view;
-  private Clutter.Text _new_game_msg;
-  private Clutter.Text _new_round_msg;
-  private Clutter.Text _finish_round_msg;
   private bool _is_view_init;
 
   private GLib.Settings _settings;
@@ -87,6 +84,10 @@ public class Game : GLib.Object
     get { return _ships; }
   }
 
+  public string status_message {
+    get; set; default = "";
+  }
+
   public void new_game ()
   {
     if (!_is_view_init)
@@ -98,7 +99,7 @@ public class Game : GLib.Object
     _ships[0].score = 0;
     _ships[1].score = 0;
     _reset_sprites ();
-    _new_game_msg.show ();
+    status_message = _("Press SPACE bar to start game");
     _game_state = GameState.STATE_NEW_GAME;
     round = 1;
     started = false;
@@ -110,7 +111,6 @@ public class Game : GLib.Object
     _init_background ();
     _init_sun ();
     _init_ships ();
-    _init_messages ();
   }
 
   private void _init_background ()
@@ -167,28 +167,6 @@ public class Game : GLib.Object
     {
       stderr.printf ("%s\n", e.message);
     }
-  }
-
-  private void _init_messages ()
-  {
-    const Clutter.Color white_color = { 0xff, 0xff, 0xff, 0xff };
-
-    _new_game_msg = new Clutter.Text.with_text ("Helvetica 14pt", "Press SPACE bar to start game");
-    _new_game_msg.color = white_color;
-    _new_game_msg.x = _view.width/2.0f - _new_game_msg.width/2.0f;
-    _new_game_msg.hide ();
-    _view.add_child (_new_game_msg);
-
-    _new_round_msg = new Clutter.Text.with_text ("Helvetica 14pt", "Press SPACE bar to start new round");
-    _new_round_msg.color = white_color;
-    _new_round_msg.x = _view.width/2.0f - _new_round_msg.width/2.0f;
-    _new_round_msg.hide ();
-    _view.add_child (_new_round_msg);
-
-    _finish_round_msg = new Clutter.Text ();
-    _finish_round_msg.color = white_color;
-    _finish_round_msg.hide ();
-    _view.add_child (_finish_round_msg);
   }
 
   public void pause (bool state)
@@ -295,13 +273,13 @@ public class Game : GLib.Object
 
   private void _start_game ()
   {
-    _new_game_msg.hide ();
+    status_message = "";
     _start_round ();
   }
 
   private void _start_round ()
   {
-    _new_round_msg.hide ();
+    status_message = "";
 
     _reset_player_key_pressed ();
     _setup_draw_timeout ();
@@ -452,21 +430,18 @@ public class Game : GLib.Object
     if (_ships[0].exploded && _ships[1].exploded)
     {
       // even
-      _finish_round_msg.text = "Even";
+      status_message = _("Even");
     }
     else if (_ships[0].exploded)
     {
-      _finish_round_msg.text = "Player 2 wins";
+      status_message = _("Player 2 wins");
       _ships[1].score++;
     }
     else if (_ships[1].exploded)
     {
-      _finish_round_msg.text = "Player 1 wins";
+      status_message = _("Player 1 wins");
       _ships[0].score++;
     }
-
-    _finish_round_msg.x = _view.width/2.0f - _finish_round_msg.width/2.0f;
-    _finish_round_msg.show ();
 
     _game_state = GameState.STATE_FINISHED_ROUND;
     GLib.Timeout.add (3000, _finish_round_timeout_cb);
@@ -474,7 +449,7 @@ public class Game : GLib.Object
 
   private bool _finish_round_timeout_cb ()
   {
-    _finish_round_msg.hide ();
+    status_message = "";
     _new_round ();
 
     return false;
@@ -483,7 +458,7 @@ public class Game : GLib.Object
   private void _new_round ()
   {
     _reset_sprites ();
-    _new_round_msg.show ();
+    status_message = "Press SPACE bar to start new round";
 
     round++;
     _game_state = GameState.STATE_NEW_ROUND;
