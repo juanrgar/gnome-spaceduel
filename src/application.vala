@@ -106,7 +106,9 @@ public class Application : Gtk.Application
   {
     _game = new Game (_settings);
     _game.notify["round"].connect ((s, p) => {
-      _header_bar.title = "Round " + _game.round.to_string ();
+      string title = _("Round");
+      title += " " + _game.round.to_string ();
+      _header_bar.title = title;
     });
 
     _game.bind_property ("started", lookup_action ("preferences"), "enabled", GLib.BindingFlags.INVERT_BOOLEAN);
@@ -140,7 +142,7 @@ public class Application : Gtk.Application
   {
     _header_bar = new Gtk.HeaderBar ();
     _header_bar.show_close_button = true;
-    _header_bar.title = "New game";
+    _header_bar.title = _("New game");
     _window.set_titlebar (_header_bar);
 
     _pause_button = new Gtk.ToggleButton.with_label (_("Pause"));
