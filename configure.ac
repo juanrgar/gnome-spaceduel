@@ -59,5 +59,6 @@ data/icons/hicolor/Makefile
 data/sprites/Makefile
 data/sprites/explosion/Makefile
 src/Makefile
+help/Makefile
 ])
 AC_OUTPUT
