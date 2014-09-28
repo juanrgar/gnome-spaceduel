@@ -4,11 +4,11 @@
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkApplicationWindow" id="applicationwindow">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">gspaceduel</property>
+    <property name="title" translatable="yes">gnome-spaceduel</property>
     <property name="window_position">center</property>
     <property name="default_width">1024</property>
     <property name="default_height">768</property>
-    <property name="icon_name">gspaceduel</property>
+    <property name="icon_name">gnome-spaceduel</property>
     <property name="has_resize_grip">False</property>
     <property name="show_menubar">False</property>
     <child>

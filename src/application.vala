@@ -329,6 +329,7 @@ public class Application : Gtk.Application
     }
 
     Environment.set_application_name (_("Spaceduel"));
+    Gtk.Window.set_default_icon_name ("gnome-spaceduel");
 
     try
     {

@@ -1,12 +1,11 @@
 [Desktop Entry]
-_Name=gspaceduel
-_Comment=View current processes and monitor system state
-TryExec=gspaceduel
-Exec=gspaceduel
-Icon=utilities-system-monitor
+_Name=gnome-spaceduel
+_Comment=Destroy your opponents's ship in space
+TryExec=gnome-spaceduel
+Exec=gnome-spaceduel
+Icon=gnome-spaceduel
 Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Games;
-NotShowIn=KDE;
 _Keywords=Games;Space;
