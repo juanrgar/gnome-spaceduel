@@ -4,6 +4,7 @@
     <file preprocess="xml-stripblanks">data/menus.ui</file>
     <file preprocess="xml-stripblanks">data/mainwindow.ui</file>
     <file preprocess="xml-stripblanks">data/preferences.ui</file>
+    <file preprocess="xml-stripblanks">data/assistant.ui</file>
     <file>data/style.css</file>
     <file alias="sun">data/sprites/sun.png</file>
     <file alias="background">data/sprites/background.png</file>

@@ -15,6 +15,11 @@
       <summary>Window maximized</summary>
       <description>Window maximization state.</description>
     </key>
+    <key name="show-assistant" type="b">
+      <default>true</default>
+      <summary>Show assistant</summary>
+      <description>Whether or not show initial assistant.</description>
+    </key>
     <key name="game-speed" type="d">
       <default>1.0</default>
       <summary>Game speed</summary>

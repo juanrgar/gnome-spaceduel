@@ -23,16 +23,18 @@ public class Application : Gtk.Application
   private Gtk.ToggleButton _pause_button;
   private Gtk.AboutDialog _about_dialog;
   private Gtk.Dialog _preferences_dialog;
+  private Gtk.Dialog _assistant_dialog;
 
   private Game _game;
 
   private const GLib.ActionEntry[] action_entries =
   {
-    { "new-game",      new_game_cb    },
-    { "about",         about_cb       },
-    { "preferences",   preferences_cb },
-    { "quit",          quit_cb        },
-    { "help",          help_cb        }
+    { "new-game",       new_game_cb       },
+    { "show-assistant", show_assistant_cb },
+    { "about",          about_cb          },
+    { "preferences",    preferences_cb    },
+    { "quit",           quit_cb           },
+    { "help",           help_cb           }
   };
 
   public Application ()
@@ -62,6 +64,7 @@ public class Application : Gtk.Application
     _create_window (builder);
     _create_about_dialog ();
     _create_preferences_dialog (builder);
+    _create_assistant_dialog (builder);
 
     _game.new_game ();
     _connect_game_elements (builder);
@@ -264,9 +267,44 @@ public class Application : Gtk.Application
     _settings.bind ("initial-bullets", builder.get_object ("bullets"), "value", GLib.SettingsBindFlags.DEFAULT);
   }
 
+  private void _create_assistant_dialog (Gtk.Builder builder)
+  {
+    try 
+    {
+      builder.add_from_resource ("/org/gnome/gnome-spaceduel/data/assistant.ui");
+    }
+    catch (GLib.Error e)
+    {
+      stderr.printf ("%s\n", e.message);
+    }
+
+    _assistant_dialog = builder.get_object ("assistant") as Gtk.Dialog;
+    _assistant_dialog.set_transient_for (_window);
+
+    _assistant_dialog.response.connect ((response_id) => {
+      _assistant_dialog.hide_on_delete ();
+    });
+    _assistant_dialog.delete_event.connect ((response_id) => {
+      return _assistant_dialog.hide_on_delete ();
+    });
+
+    // Bindings
+    _settings.bind ("show-assistant", builder.get_object ("showassistant"), "active", GLib.SettingsBindFlags.DEFAULT);
+
+    if (_settings.get_boolean ("show-assistant"))
+    {
+      _assistant_dialog.present ();
+    }
+  }
+
   private void new_game_cb ()
   {
     _game.new_game ();
+  }
+
+  private void show_assistant_cb ()
+  {
+    _assistant_dialog.present ();
   }
 
   private void about_cb ()
