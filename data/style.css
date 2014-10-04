@@ -13,6 +13,7 @@
 /*  background-image: url("/org/gnome/gspaceduel/background"); */
 }
 
+/*
 .level-bar.fill-block {
   border: 1px solid #40760c;
   background-color: #5aa411;
@@ -43,3 +44,4 @@
 .level-bar.fill-block.empty-fill-block:backdrop {
   border-color: rgba(201, 203, 201, 0.15);
 }
+*/
