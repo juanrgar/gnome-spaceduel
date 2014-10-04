@@ -42,6 +42,7 @@ public class Game : GLib.Object
   private SimpleSprite _sun;
   private ShipSprite[] _ships;
   private Gdk.Pixbuf[] _ship_explosion_frames;
+  private Gdk.Pixbuf _bullet_frame;
   private Gee.ArrayList<BulletSprite> _bullets;
 
   public Game (GLib.Settings settings)
@@ -162,6 +163,8 @@ public class Game : GLib.Object
         var frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/explos" + i.to_string("%02i"));
         _ship_explosion_frames[i] = frame;
       }
+
+      _bullet_frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/bullet");
     }
     catch (GLib.Error e)
     {
@@ -337,7 +340,7 @@ public class Game : GLib.Object
       {
         if (_ships[i].has_bullets ())
         {
-          var bullet = new BulletSprite ("bullet");
+          var bullet = new BulletSprite ("bullet", _bullet_frame);
           bullet.load ();
           _view.add_child (bullet);
           _bullets.add (bullet);

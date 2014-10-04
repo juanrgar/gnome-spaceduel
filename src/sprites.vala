@@ -320,45 +320,33 @@ public class ExplosionSprite : Clutter.Actor
 
 public class BulletSprite : MobileSprite
 {
-  private static Gdk.Pixbuf? _bullet_frame = null;
+  private Gdk.Pixbuf _bullet_frame;
 
-  public BulletSprite (string element_id)
+  public BulletSprite (string element_id, Gdk.Pixbuf frame)
   {
     Object (element_id: element_id);
+
+    _bullet_frame = frame;
   }
 
   public override void load ()
   {
-    if (BulletSprite._bullet_frame == null)
+    try
     {
-      try
-      {
-        BulletSprite._bullet_frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/" + _element_id);
-      }
-      catch (GLib.Error e)
-      {
-        stderr.printf ("%s\n", e.message);
-      }
-    }
-    else
-    {
-      try
-      {
-        var image = new Clutter.Image ();
-        image.set_data (BulletSprite._bullet_frame.get_pixels (),
+      var image = new Clutter.Image ();
+      image.set_data (_bullet_frame.get_pixels (),
           Cogl.PixelFormat.RGBA_8888,
-          BulletSprite._bullet_frame.width,
-          BulletSprite._bullet_frame.height,
-          BulletSprite._bullet_frame.rowstride);
+          _bullet_frame.width,
+          _bullet_frame.height,
+          _bullet_frame.rowstride);
 
-        content = image;
-        width = BulletSprite._bullet_frame.width;
-        height = BulletSprite._bullet_frame.height;
-      }
-      catch (GLib.Error e)
-      {
-        stderr.printf ("%s\n", e.message);
-      }
+      content = image;
+      width = _bullet_frame.width;
+      height = _bullet_frame.height;
+    }
+    catch (GLib.Error e)
+    {
+      stderr.printf ("%s\n", e.message);
     }
   }
 }
