@@ -7,5 +7,5 @@ Icon=gnome-spaceduel
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;Games;
+Categories=GNOME;GTK;Game;
 _Keywords=Games;Space;
