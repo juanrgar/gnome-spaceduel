@@ -16,7 +16,7 @@
 
 public class SimpleSprite : Clutter.Actor
 {
-  private string _element_id;
+  protected string _element_id;
 
   public SimpleSprite (string element_id)
   {
@@ -50,7 +50,6 @@ public class SimpleSprite : Clutter.Actor
   public string element_id
   {
     construct { _element_id = value; }
-    get { return _element_id; }
   }
 
   public float center_x
@@ -321,8 +320,45 @@ public class ExplosionSprite : Clutter.Actor
 
 public class BulletSprite : MobileSprite
 {
+  private static Gdk.Pixbuf? _bullet_frame = null;
+
   public BulletSprite (string element_id)
   {
     Object (element_id: element_id);
+  }
+
+  public override void load ()
+  {
+    if (BulletSprite._bullet_frame == null)
+    {
+      try
+      {
+        BulletSprite._bullet_frame = new Gdk.Pixbuf.from_resource ("/org/gnome/gnome-spaceduel/" + _element_id);
+      }
+      catch (GLib.Error e)
+      {
+        stderr.printf ("%s\n", e.message);
+      }
+    }
+    else
+    {
+      try
+      {
+        var image = new Clutter.Image ();
+        image.set_data (BulletSprite._bullet_frame.get_pixels (),
+          Cogl.PixelFormat.RGBA_8888,
+          BulletSprite._bullet_frame.width,
+          BulletSprite._bullet_frame.height,
+          BulletSprite._bullet_frame.rowstride);
+
+        content = image;
+        width = BulletSprite._bullet_frame.width;
+        height = BulletSprite._bullet_frame.height;
+      }
+      catch (GLib.Error e)
+      {
+        stderr.printf ("%s\n", e.message);
+      }
+    }
   }
 }
