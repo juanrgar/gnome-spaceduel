@@ -49,6 +49,10 @@ gnome-spaceduel-data.c: gnome-spaceduel.gresource.xml $(data_files)
 		--generate						\
 		--c-name gnome_spaceduel_data $<
 
+EXTRA_DIST = \
+	gnome-spaceduel.gresource.xml \
+	$(data_files)
+
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
 	*_vala.stamp \
