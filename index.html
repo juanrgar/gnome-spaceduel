@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spaceduel Web</title>
+    <meta name="description" content="A web port of the Spaceduel game" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <h1>Spaceduel</h1>
+      </header>
+
+      <main class="game-shell">
+        <section class="hud-panel">
+          <div class="scoreboard">
+            <div class="score-block">
+              <label>Player 1</label>
+              <strong id="score1">0</strong>
+            </div>
+            <div class="score-block">
+              <label>Player 2</label>
+              <strong id="score2">0</strong>
+            </div>
+          </div>
+
+          <div class="status" id="status">Press SPACE to start</div>
+        </section>
+
+        <canvas id="game" width="960" height="640" aria-label="Spaceduel game canvas"></canvas>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
