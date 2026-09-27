@@ -1,4 +1,4 @@
-import { Game } from './Game';
+import { Game } from './game/Game.js';
 
 const canvas = document.querySelector<HTMLCanvasElement>('#game');
 const statusText = document.querySelector<HTMLElement>('#status');
